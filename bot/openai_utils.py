@@ -7,9 +7,9 @@ openai.api_key = config.openai_api_key
 CHAT_MODES = config.chat_modes
 
 OPENAI_COMPLETION_OPTIONS = {
-    "temperature": 0.7,
-    "max_tokens": 1000,
-    "top_p": 1,
+    "temperature": 0.2,
+    "max_tokens": 1200,
+    "top_p": 0.1,
     "frequency_penalty": 0,
     "presence_penalty": 0
 }
@@ -30,7 +30,7 @@ class ChatGPT:
                 if self.use_chatgpt_api:
                     messages = self._generate_prompt_messages_for_chatgpt_api(message, dialog_messages, chat_mode)
                     r = await openai.ChatCompletion.acreate(
-                        model="gpt-3.5-turbo",
+                        model="text-davinci-003",
                         messages=messages,
                         **OPENAI_COMPLETION_OPTIONS
                     )
